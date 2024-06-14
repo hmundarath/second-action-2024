@@ -1,5 +1,6 @@
 name: Deploy project
-on: push
+#on: push
+on: [push, workflow_dispatch] #multiple trigger examples
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -19,7 +20,7 @@ jobs:
               run: npm test
 
     deploy:
-        needs: test
+        needs: test #Executes job in a sequence. This job will run only if the test job completes successfully. 
         runs-on: ubuntu-latest
         steps:
             - name: Get code
